@@ -1,22 +1,50 @@
-# mens_cosme_web
+# アプリケーション概要
+男性向けコスメレビューサイト。食べログなどのように、一般層がレビューを追加していくことで、メンズコスメのどれを購入するべきかの判断材料となる。
 
-> My dandy Nuxt.js project
+このアプリケーションを利用することで、多くの人々の検索時間効率化を図ると共に、最適な購入を行えるようにする。
 
-## Build Setup
+# 作成背景
+女性向けのコスメレビューサイトは多く存在しているが、男性向けでは存在していない。
 
-``` bash
-# install dependencies
-$ npm install
+これにより、顔出しをしていない一個人のブログなどでしか情報を集めることができず、判断材料が少なかった。
 
-# serve with hot reload at localhost:3000
-$ npm run dev
+しかしながら、男性の美容に対する意識は年々高くなっていることもあり、多くの人々がレビューすることに対して需要があると考えた。
 
-# build for production and launch server
-$ npm run build
-$ npm run start
+このアプリケーションを利用することで、多くの人々の検索時間効率化を図ると共に、最適な購入を行えるようにする。
 
-# generate static project
-$ npm run generate
-```
+# 機能一覧(実装予定)
+●ユーザー登録、ログイン機能
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+●レビュー投稿機能
+
+●レビュー検索機能
+
+●レビュー一覧表示機能
+
+●レビュー詳細表示機能
+
+# 使用技術
+## ◼︎言語
+### フロントエンド
+Vue 2.6.11
+### バックエンド
+Ruby 2.5.1
+## ◼︎フレームワーク
+### フロントエンド
+Nuxt.js 2.11.0
+### バックエンド
+Ruby on Rails 5.2.4.1
+## ◼︎データベース
+### 開発環境
+MySQL 5.6.47
+### 本番環境
+PostgreSQL 11.6(一次実装予定)
+
+MySQL 5.6.47(二次実装予定)
+## ◼︎インフラ
+### 一次実装予定
+Heroku dyno
+
+AWS S3
+### 二次実装予定
+AWS EC2
