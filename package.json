@@ -11,7 +11,10 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "firebase": "^7.10.0",
     "nuxt": "^2.0.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@nuxtjs/dotenv": "^1.4.1"
+  }
 }
