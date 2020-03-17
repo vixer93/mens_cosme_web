@@ -2,14 +2,17 @@
   <form class="signup-form">
     <h1 class="signup-title">Sign Up</h1>
     <input v-model="name" type="text" class="signup-name" placeholder="ニックネーム">
-    <input v-model="email" type="text" class="signup-email" placeholder="Email">
-    <input v-model="password" type="text" class="signup-password" placeholder="パスワード">
-    <input v-model="password_confirmation" type="text" class="signup-password-conf" placeholder="パスワード確認"><br>
-    <button class="signup-button">登録</button>
+    <input v-model="email" type="email" class="signup-email" placeholder="Email">
+    <input v-model="password" type="password" class="signup-password" placeholder="パスワード">
+    <input v-model="password_confirmation" type="password" class="signup-password-conf" placeholder="パスワード確認"><br>
+    <p class="signup-error-message">{{ error }}</p>
+    <button @click.prevent="signup" class="signup-button">登録</button>
   </form>
 </template>
 
 <script>
+import axios    from "@/plugins/axios"
+import firebase from "@/plugins/firebase";
 export default {
   data(){
     return {
@@ -17,10 +20,42 @@ export default {
       email: "",
       password: "",
       password_confirmation: "",
+      error: "",
     }
   },
-  method: {
-    
+  methods: {
+    signup(){
+      if (this.password != this.password_confirmation) {
+        this.error = "パスワードが一致していません"
+      }
+      firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+      .then(res =>{
+        const user = {
+          email: res.user.email,
+          name:  this.name,
+          uid:   res.user.uid,
+        };
+        axios.post("/users",{ user })
+        .then(()=>{
+          this.$router.push("/");
+        });
+      })
+      .catch(error=>{
+        console.log(error)
+        this.error = (code => {
+          switch (code){
+            case "auth/email-already-in-use":
+              return "既に登録されたメールアドレスです"
+            case "auth/wrong-password":
+              return "パスワードが正しくありません"
+            case "auth/weak-password":
+              return "パスワードは6文字以上必須です"
+            default:
+              return "メールアドレスとパスワードをご確認ください"
+          }
+        })(error.code);
+      })
+    },
   }
 }
 </script>
@@ -45,6 +80,7 @@ export default {
   height: 40px;
   width: 380px;
   margin-bottom: 20px;
+  font-size: 18px;
 }
 
 .signup-email {
@@ -53,6 +89,7 @@ export default {
   height: 40px;
   width: 380px;
   margin-bottom: 20px;
+  font-size: 18px;
 }
 
 .signup-password {
@@ -61,6 +98,7 @@ export default {
   height: 40px;
   width: 380px;
   margin-bottom: 20px;
+  font-size: 18px;
 }
 
 .signup-password-conf {
@@ -69,6 +107,7 @@ export default {
   height: 40px;
   width: 380px;
   margin-bottom: 20px;
+  font-size: 18px;
 }
 
 .signup-button {
@@ -78,5 +117,10 @@ export default {
   border-style: none;
   background-color: #00acc1;
   color: white;
+}
+
+.signup-error-message {
+  color: red;
+  margin-bottom: 10px;
 }
 </style>
