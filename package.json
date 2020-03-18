@@ -11,7 +11,11 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "axios": "^0.19.2",
+    "firebase": "^7.10.0",
     "nuxt": "^2.0.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@nuxtjs/dotenv": "^1.4.1"
+  }
 }
