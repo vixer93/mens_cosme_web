@@ -61,67 +61,135 @@ export default {
 </script>
 
 <style>
-.signup-form {
-  background-color: white;
-  width: 665px;
-  margin: 0 auto;
-  padding: 20px 0 80px 0;
-  text-align: center;
+@media screen and (min-width: 481px){
+  .signup-form {
+    background-color: white;
+    width: 665px;
+    margin: 0 auto;
+    padding: 20px 0 80px 0;
+    text-align: center;
+  }
+
+  .signup-title {
+    color: #00acc1;
+    margin-bottom: 20px;
+    font-size: 30px;
+  }
+
+  .signup-name {
+    background-color: #f4f8fa;
+    border-style: none;
+    height: 40px;
+    width: 380px;
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
+
+  .signup-email {
+    background-color: #f4f8fa;
+    border-style: none;
+    height: 40px;
+    width: 380px;
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
+
+  .signup-password {
+    background-color: #f4f8fa;
+    border-style: none;
+    height: 40px;
+    width: 380px;
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
+
+  .signup-password-conf {
+    background-color: #f4f8fa;
+    border-style: none;
+    height: 40px;
+    width: 380px;
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
+
+  .signup-button {
+    height: 40px;
+    width: 380px;
+    font-size: 25px;
+    border-style: none;
+    background-color: #00acc1;
+    color: white;
+  }
+
+  .signup-error-message {
+    color: red;
+    margin-bottom: 10px;
+  }
 }
 
-.signup-title {
-  color: #00acc1;
-  margin-bottom: 20px;
-  font-size: 30px;
-}
+@media screen and (max-width: 480px){
+  .signup-form {
+    background-color: white;
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px 0 80px 0;
+    text-align: center;
+  }
 
-.signup-name {
-  background-color: #f4f8fa;
-  border-style: none;
-  height: 40px;
-  width: 380px;
-  margin-bottom: 20px;
-  font-size: 18px;
-}
+  .signup-title {
+    color: #00acc1;
+    margin-bottom: 20px;
+    font-size: 30px;
+  }
 
-.signup-email {
-  background-color: #f4f8fa;
-  border-style: none;
-  height: 40px;
-  width: 380px;
-  margin-bottom: 20px;
-  font-size: 18px;
-}
+  .signup-name {
+    background-color: #f4f8fa;
+    border-style: none;
+    height: 40px;
+    width: 90%;
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
 
-.signup-password {
-  background-color: #f4f8fa;
-  border-style: none;
-  height: 40px;
-  width: 380px;
-  margin-bottom: 20px;
-  font-size: 18px;
-}
+  .signup-email {
+    background-color: #f4f8fa;
+    border-style: none;
+    height: 40px;
+    width: 90%;
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
 
-.signup-password-conf {
-  background-color: #f4f8fa;
-  border-style: none;
-  height: 40px;
-  width: 380px;
-  margin-bottom: 20px;
-  font-size: 18px;
-}
+  .signup-password {
+    background-color: #f4f8fa;
+    border-style: none;
+    height: 40px;
+    width: 90%;
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
 
-.signup-button {
-  height: 40px;
-  width: 380px;
-  font-size: 25px;
-  border-style: none;
-  background-color: #00acc1;
-  color: white;
-}
+  .signup-password-conf {
+    background-color: #f4f8fa;
+    border-style: none;
+    height: 40px;
+    width: 90%;
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
 
-.signup-error-message {
-  color: red;
-  margin-bottom: 10px;
+  .signup-button {
+    height: 40px;
+    width: 90%;
+    font-size: 25px;
+    border-style: none;
+    background-color: #00acc1;
+    color: white;
+  }
+
+  .signup-error-message {
+    color: red;
+    margin-bottom: 10px;
+  }
 }
 </style>

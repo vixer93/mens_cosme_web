@@ -18,10 +18,23 @@ export default {
 
 <style>
 @import '@/assets/style/reset.css'
+@font-face {
+  font-family: "YuGothic-M";
+  font-weight: normal;
+   src: local("YuGothic-Medium"),
+      local("Yu Gothic Medium"),
+      local("YuGothic-Regular");
+}
+
+@font-face {
+  font-family: "YuGothic-M";
+  font-weight: bold;
+   src: local("YoGothic-Bold"),
+      local("Yu Gothic");
+}
+
 html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
-  font-size: 16px;
+  font-size: 62.5%;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -35,6 +48,10 @@ body {
   width: 100%;
   height: 100%;
   background-color: #f4f8fa;
+  font-size: 1.6rem;
+  font-family: -apple-system, blinkMacSystemFont, YuGothic-M, YuGothic, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  -webkit-text-size-adjust: 100%;
+  font-feature-settings: "palt";
 }
 
 *,
