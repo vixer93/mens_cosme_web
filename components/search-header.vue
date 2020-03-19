@@ -16,27 +16,52 @@ export default {
 </script>
 
 <style>
-.search-header {
-  height: 50px;
-  width: 100%;
-  padding: 10px;
-  text-align: right;
-  border-bottom: solid 1px #eeeeee;
+@media screen and (min-width: 481px){
+  .search-header {
+    height: 50px;
+    width: 100%;
+    padding: 10px;
+    text-align: right;
+    border-bottom: solid 1px #eeeeee;
+  }
+  .search-header-input {
+    border-style: none;
+    background-color: #f4f8fa;
+    height: 100%;
+    width: 200px;
+    font-size: 15px;
+    vertical-align: baseline;
+  }
+  .search-header-btn {
+    background-color: #00acc1;
+    border-style: none;
+    color: white;
+    height: 100%;
+    width: 50px;
+    font-size: 20px;
+  }
 }
-.search-header-input {
-  border-style: none;
-  background-color: #f4f8fa;
-  height: 100%;
-  width: 200px;
-  font-size: 15px;
-  vertical-align: baseline;
-}
-.search-header-btn {
-  background-color: #00acc1;
-  border-style: none;
-  color: white;
-  height: 100%;
-  width: 50px;
-  font-size: 20px;
+
+@media screen and (max-width: 480px){
+  .search-header {
+    height: 50px;
+    padding: 10px;
+    border-bottom: solid 1px #eeeeee;
+    display: flex;
+    justify-content: center;
+  }
+  .search-header-input {
+    border-style: none;
+    background-color: #f4f8fa;
+    width: 80%;
+    font-size: 15px;
+  }
+  .search-header-btn {
+    background-color: #00acc1;
+    border-style: none;
+    color: white;
+    width: 50px;
+    font-size: 20px;
+  }
 }
 </style>
