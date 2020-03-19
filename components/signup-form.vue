@@ -72,6 +72,7 @@ export default {
 .signup-title {
   color: #00acc1;
   margin-bottom: 20px;
+  font-size: 30px;
 }
 
 .signup-name {
