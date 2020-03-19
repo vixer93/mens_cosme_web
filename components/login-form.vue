@@ -54,6 +54,7 @@ export default {
 .login-title {
   color: #00acc1;
   margin-bottom: 20px;
+  font-size: 30px;
 }
 
 .login-name {
