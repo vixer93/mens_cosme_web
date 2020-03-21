@@ -53,7 +53,17 @@ body {
   -webkit-text-size-adjust: 100%;
   font-feature-settings: "palt";
 }
+button {
+  -webkit-appearance: none;
+}
 
+input[type=text]    {
+    font-size : 16px;
+    border : 1px solid #ccc;
+    -webkit-border-radius : 0;
+    -webkit-appearance : none;
+    -webkit-tap-highlight-color : rgba(0,0,0,0);
+}
 *,
 *:before,
 *:after {

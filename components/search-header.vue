@@ -62,6 +62,7 @@ export default {
     color: white;
     width: 50px;
     font-size: 20px;
+    text-align: center;
   }
 }
 </style>
