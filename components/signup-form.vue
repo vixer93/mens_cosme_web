@@ -36,7 +36,8 @@ export default {
           uid:   res.user.uid,
         };
         axios.post("/users",{ user })
-        .then(()=>{
+        .then(res => {
+          this.$store.commit("user/currentUser", res.data)
           this.$router.push("/");
         });
       })
