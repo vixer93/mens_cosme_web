@@ -59,7 +59,6 @@ button {
 
 input[type=text]    {
     font-size : 16px;
-    border : 1px solid #ccc;
     -webkit-border-radius : 0;
     -webkit-appearance : none;
     -webkit-tap-highlight-color : rgba(0,0,0,0);
