@@ -14,12 +14,8 @@
 
 <script>
 import axios from '@/plugins/axios'
+
 export default {
-  // computed: {
-  //   currentUser(){
-  //     return this.$store.state.user.currentUser
-  //   }
-  // },
   data(){
     return {
       name: "",
@@ -45,14 +41,7 @@ export default {
       for(let i=0; i<this.images.length; i++){
         formData.append(`product[images_attributes][${i}][name]`, this.images[i])
       }
-      // this.$store.dispatch("product/addProduct", formData)
-      axios.post("/products",
-                formData ,
-               { headers: { 'Content-Type': 'multipart/form-data'}}
-              )
-    .then(res => {
-      console.log("OK")
-    })
+      this.$store.dispatch("product/addProduct", formData)
       this.$router.push("/");
     }
   }

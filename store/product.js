@@ -11,15 +11,16 @@ export const mutations = {
 }
 
 export const actions = {
-  addProduct(commit, product){
+  addProduct(commit, payload){
     axios.post("/products",
-               { product },
+               payload,
                { headers: { 'Content-Type': 'multipart/form-data'}}
               )
     .then(res => {
       commit("product/addProduct", res.data)
     })
     .catch(error => {
+      console.log(error)
     })
   }
 }
