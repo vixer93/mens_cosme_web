@@ -5,6 +5,7 @@
     <input v-model="name" type="text" class="new-product-name" placeholder="商品名">
     <input v-model="brand" type="text" class="new-product-email" placeholder="ブランド">
     <input v-model="price" type="text" class="new-product-password" placeholder="価格">
+    <input @change="handleChangeFile" type="file" class="new-product-file" placeholder="価格">
     <p class="new-product-error-message">{{ error }}</p>
     <button @click.prevent="add" class="new-product-button">登録</button>
   </form>
@@ -12,29 +13,44 @@
 </template>
 
 <script>
+import axios from '@/plugins/axios'
 export default {
-  computed: {
-    currentUser(){
-      return this.$store.state.user.currentUser
-    }
-  },
+  // computed: {
+  //   currentUser(){
+  //     return this.$store.state.user.currentUser
+  //   }
+  // },
   data(){
     return {
       name: "",
       brand: "",
       price: null,
+      images: [],
       error: "",
     }
   },
   methods: {
+    handleChangeFile(event){
+      this.images = event.target.files[0]
+    },
+
     add(){
-      const product = {
-        name: this.name,
-        brand: this.brand,
-        price: this.price,
-        user_id: this.$store.state.user.currentUser.id
-      }
-      this.$store.dispatch("product/addProduct", product)
+      let formData = new FormData;
+      formData.append('product[name]', this.name)
+      formData.append('product[brand]', this.brand)
+      formData.append('product[price]', this.price)
+      formData.append('product[user_id]', this.$store.state.user.currentUser.id)
+      formData.append(`product[images_attributes][0][name]`, this.images)
+      // for(let i=0; i<this.images.length; i++){
+      // }
+      // this.$store.dispatch("product/addProduct", formData)
+      axios.post("/products",
+                formData ,
+               { headers: { 'Content-Type': 'multipart/form-data'}}
+              )
+    .then(res => {
+      console.log("OK")
+    })
       this.$router.push("/");
     }
   }
