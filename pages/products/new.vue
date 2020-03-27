@@ -5,7 +5,7 @@
     <input v-model="name" type="text" class="new-product-name" placeholder="商品名">
     <input v-model="brand" type="text" class="new-product-email" placeholder="ブランド">
     <input v-model="price" type="text" class="new-product-password" placeholder="価格">
-    <input @change="handleChangeFile" type="file" class="new-product-file" placeholder="価格">
+    <input @change="handleChangeFile" type="file" class="new-product-file" placeholder="価格" multiple="multiple">
     <p class="new-product-error-message">{{ error }}</p>
     <button @click.prevent="add" class="new-product-button">登録</button>
   </form>
@@ -31,7 +31,9 @@ export default {
   },
   methods: {
     handleChangeFile(event){
-      this.images = event.target.files[0]
+      let images = this.images
+      images.push(event.target.files[0])
+      this.images = images
     },
 
     add(){
@@ -40,9 +42,9 @@ export default {
       formData.append('product[brand]', this.brand)
       formData.append('product[price]', this.price)
       formData.append('product[user_id]', this.$store.state.user.currentUser.id)
-      formData.append(`product[images_attributes][0][name]`, this.images)
-      // for(let i=0; i<this.images.length; i++){
-      // }
+      for(let i=0; i<this.images.length; i++){
+        formData.append(`product[images_attributes][${i}][name]`, this.images[i])
+      }
       // this.$store.dispatch("product/addProduct", formData)
       axios.post("/products",
                 formData ,
