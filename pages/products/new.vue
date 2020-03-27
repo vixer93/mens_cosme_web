@@ -3,7 +3,7 @@
     <form class="new-product-form">
       <h1 class="new-product-title">商品追加</h1>
       <div v-if="image_urls.length>0" class="new-product-preview">
-        <div v-for="image_url in image_urls">
+        <div v-for="image_url in image_urls" class="new-product-upload">
           <img :src="image_url" class="new-product-preview-image">
         </div>
       </div>
@@ -227,6 +227,43 @@ export default {
   .new-product-error-message {
     color: red;
     margin-bottom: 10px;
+  }
+
+  .new-product-images {
+    background-color: #f4f8fa;
+    border: dashed 3px #616161;
+    height: 60px;
+    width: 90%;
+    font-size: 18px;
+    margin: 0 auto 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .new-product-camera {
+    font-size: 40px;
+    color: #616161;
+    line-height: 60px;
+  }
+
+  .new-product-file {
+    display: none;
+  }
+
+  .new-product-preview {
+    width: 90%;
+    margin: 0 auto 20px auto;
+  }
+
+  .new-product-upload {
+    height: 100%;
+    width: 100%;
+  }
+
+  .new-product-preview-image {
+    max-width: 100%;
+    max-height: 200px;
   }
 }
 </style>
