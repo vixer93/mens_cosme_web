@@ -7,7 +7,10 @@ export const store = () => ({
 
 export const mutations = {
   addProduct(store, payload){
-    store.newProduct = payload
+    let products = store.products
+    products.unshift(payload)
+    store.products = products
+    console.log(store.products)
   },
 
   setProducts(store, payload){
@@ -16,17 +19,13 @@ export const mutations = {
 }
 
 export const actions = {
-  addProduct(commit, payload){
-    axios.post("/products",
-               payload,
-               { headers: { 'Content-Type': 'multipart/form-data'}}
-              )
-    .then(res => {
-      commit("product/addProduct", res.data)
-    })
-    .catch(error => {
-      console.log(error)
-    })
+  async addProduct({commit, dispatch}, payload){
+    let { data } = await axios.post("/products",
+                                    payload,
+                                    { headers: { 'Content-Type': 'multipart/form-data'}}
+                                   )
+    // commit("addProduct", data)
+    dispatch("getProducts")
   },
 
   async getProducts({commit}){
