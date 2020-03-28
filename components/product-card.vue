@@ -1,6 +1,6 @@
 <template>
   <div class="product-card">
-    <div class="product-card-image"><img :src="image"></div>
+    <img :src="image" class="product-card-image">
     <div class="product-card-info">
       <ul class="product-card-lists">
         <li class="product-card-list">
@@ -66,6 +66,7 @@ export default {
   .product-card-image {
     width: 200px;
     height: 200px;
+    object-fit: contain;
     background-color: #eeeeee;
     display: flex;
     align-items: center;
@@ -115,6 +116,7 @@ export default {
   .product-card-image {
     width: 300px;
     height: 300px;
+    object-fit: contain;
     margin: 0 auto 20px auto;
     background-color: #eeeeee;
     display: flex;
