@@ -29,11 +29,8 @@ export const actions = {
     })
   },
 
-  getProducts({commit}){
-    axios.get("/products")
-    .then(res => {
-      commit("setProducts", res.data)
-      console.log(res.data)
-    })
+  async getProducts({commit}){
+    let { data } = await axios.get("/products")
+    commit("setProducts", data)
   }
 }
