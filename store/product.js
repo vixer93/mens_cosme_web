@@ -1,12 +1,17 @@
 import axios from '@/plugins/axios'
 
 export const store = () => ({
-  newProduct: {}
+  products: [],
+  newProduct: {},
 })
 
 export const mutations = {
   addProduct(store, payload){
     store.newProduct = payload
+  },
+
+  setProducts(store, payload){
+    store.products = payload
   }
 }
 
@@ -21,6 +26,14 @@ export const actions = {
     })
     .catch(error => {
       console.log(error)
+    })
+  },
+
+  getProducts({commit}){
+    axios.get("/products")
+    .then(res => {
+      commit("setProducts", res.data)
+      console.log(res.data)
     })
   }
 }

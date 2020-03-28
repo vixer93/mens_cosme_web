@@ -7,7 +7,11 @@
 
 <script>
 import ProductCard from '@/components/product-card'
+
 export default {
+  mounted(){
+    this.$store.dispatch("product/getProducts")
+  },
   components: {
     ProductCard,
   },
