@@ -1,11 +1,16 @@
 <template>
   <div class="container">
-    Hello<span v-if="currentUser"> {{ currentUser.name }}</span>
+    <ProductCard/>
+    <ProductCard/>
   </div>
 </template>
 
 <script>
+import ProductCard from '@/components/product-card'
 export default {
+  components: {
+    ProductCard,
+  },
   computed: {
     currentUser(){
       return this.$store.state.user.currentUser

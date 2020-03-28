@@ -4,7 +4,7 @@
       <nuxt-link class="nav-header-link" to="/">
         <font-awesome-icon icon = "shapes" />
         tetra
-    </nuxt-link>
+      </nuxt-link>
     </h1>
     <nav>
       <ul v-if="currentUser" class="nav-header-lists">
