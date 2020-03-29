@@ -2,7 +2,7 @@
   <div class="search-header">
     <input v-model="keyword" class="search-header-input" placeholder="キーワード">
     <button class="search-header-btn"><font-awesome-icon icon = "search" /></button>
-    <nuxt-link to="/products/new">
+    <nuxt-link v-if="currentUser" to="/products/new">
       <button class="search-header-create-product-btn display-none-phone">
         <font-awesome-icon icon = "pen" class="product-card-pen" />
         投稿
@@ -16,6 +16,11 @@ export default {
   data(){
     return {
       keyword: "",
+    }
+  },
+  computed: {
+    currentUser(){
+      return this.$store.state.user.currentUser
     }
   }
 }
