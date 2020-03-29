@@ -7,12 +7,13 @@
       :price="product.price"
       :point="product.point"
     />
+    <CreateProductBtn v-if="currentUser" class="display-none-pc"/>
   </div>
 </template>
 
 <script>
-import ProductCard from '@/components/product-card'
-import axios       from '@/plugins/axios'
+import ProductCard      from '@/components/product-card'
+import CreateProductBtn from '@/components/create-product-btn'
 
 export default {
   async fetch({ store }){
@@ -20,6 +21,7 @@ export default {
   },
   components: {
     ProductCard,
+    CreateProductBtn,
   },
   computed: {
     currentUser(){
@@ -33,5 +35,10 @@ export default {
 </script>
 
 <style>
+@media screen and (min-width: 481px){
+  .display-none-pc {
+    display: none;
+  }
+}
 
 </style>
