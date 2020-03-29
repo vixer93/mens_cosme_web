@@ -1,11 +1,11 @@
 <template>
   <div class="product-card">
-    <div class="product-card-image">No Image</div>
+    <img :src="image" class="product-card-image">
     <div class="product-card-info">
       <ul class="product-card-lists">
         <li class="product-card-list">
           <h3 class="product-card-list-name">商品名</h3>
-          <p class="product-card-list-content">ニベアメン リップ 無香料</p>
+          <p class="product-card-list-content">{{ name }}</p>
         </li>
         <li class="product-card-list">
           <h3 class="product-card-list-name">レビュー</h3>
@@ -14,7 +14,7 @@
           <font-awesome-icon icon = "star" class="product-card-star star-yellow" />
           <font-awesome-icon icon = "star" class="product-card-star" />
           <font-awesome-icon icon = "star" class="product-card-star" />
-          <p class="product-card-point">3.0</p>
+          <p class="product-card-point">{{ point }}</p>
         </li>
         <li class="product-card-list">
           <h3 class="product-card-list-name">カテゴリー</h3>
@@ -22,7 +22,7 @@
         </li>
         <li class="product-card-list">
           <h3 class="product-card-list-name">価格</h3>
-          <p class="product-card-list-content">500円</p>
+          <p class="product-card-list-content">{{ price }}円</p>
         </li>
       </ul>
     </div>
@@ -30,9 +30,26 @@
 </template>
 
 <script>
-  export default {
-
+export default {
+  props: {
+    'image': {
+      type: String,
+      default: "",
+    },
+    'name': {
+      type: String,
+      default: "",
+    },
+    'price': {
+      type: Number,
+      default: null,
+    },
+    'point': {
+      type: Number,
+      default: null,
+    }
   }
+}
 </script>
 
 <style>
@@ -49,6 +66,7 @@
   .product-card-image {
     width: 200px;
     height: 200px;
+    object-fit: contain;
     background-color: #eeeeee;
     display: flex;
     align-items: center;
@@ -98,6 +116,7 @@
   .product-card-image {
     width: 300px;
     height: 300px;
+    object-fit: contain;
     margin: 0 auto 20px auto;
     background-color: #eeeeee;
     display: flex;

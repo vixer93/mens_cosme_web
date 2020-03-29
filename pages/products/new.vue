@@ -45,7 +45,7 @@ export default {
       this.image_urls = image_urls
     },
 
-    add(){
+    async add(){
       let formData = new FormData;
       formData.append('product[name]', this.name)
       formData.append('product[brand]', this.brand)
@@ -54,7 +54,7 @@ export default {
       for(let i=0; i<this.images.length; i++){
         formData.append(`product[images_attributes][${i}][name]`, this.images[i])
       }
-      this.$store.dispatch("product/addProduct", formData)
+      await this.$store.dispatch("product/addProduct", formData)
       this.$router.push("/");
     }
   }
