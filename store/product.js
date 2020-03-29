@@ -10,7 +10,6 @@ export const mutations = {
     let products = store.products
     products.unshift(payload)
     store.products = products
-    console.log(store.products)
   },
 
   setProducts(store, payload){
@@ -24,8 +23,7 @@ export const actions = {
                                     payload,
                                     { headers: { 'Content-Type': 'multipart/form-data'}}
                                    )
-    // commit("addProduct", data)
-    dispatch("getProducts")
+    commit("addProduct", data)
   },
 
   async getProducts({commit}){
