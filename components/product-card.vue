@@ -1,37 +1,43 @@
 <template>
-  <div class="product-card">
-    <img :src="image" class="product-card-image">
-    <div class="product-card-info">
-      <ul class="product-card-lists">
-        <li class="product-card-list">
-          <h3 class="product-card-list-name">商品名</h3>
-          <p class="product-card-list-content">{{ name }}</p>
-        </li>
-        <li class="product-card-list">
-          <h3 class="product-card-list-name">レビュー</h3>
-          <font-awesome-icon icon = "star" class="product-card-star star-yellow" />
-          <font-awesome-icon icon = "star" class="product-card-star star-yellow" />
-          <font-awesome-icon icon = "star" class="product-card-star star-yellow" />
-          <font-awesome-icon icon = "star" class="product-card-star" />
-          <font-awesome-icon icon = "star" class="product-card-star" />
-          <p class="product-card-point">{{ point }}</p>
-        </li>
-        <li class="product-card-list">
-          <h3 class="product-card-list-name">カテゴリー</h3>
-          <p class="product-card-list-content">リップクリーム</p>
-        </li>
-        <li class="product-card-list">
-          <h3 class="product-card-list-name">価格</h3>
-          <p class="product-card-list-content">{{ price }}円</p>
-        </li>
-      </ul>
+  <nuxt-link :to="{name: 'products-id', params: {id: id}}" class="link-to-show">
+    <div class="product-card">
+      <img :src="image" class="product-card-image">
+      <div class="product-card-info">
+        <ul class="product-card-lists">
+          <li class="product-card-list">
+            <h3 class="product-card-list-name">商品名</h3>
+            <p class="product-card-list-content">{{ name }}</p>
+          </li>
+          <li class="product-card-list">
+            <h3 class="product-card-list-name">レビュー</h3>
+            <font-awesome-icon icon = "star" class="product-card-star star-yellow" />
+            <font-awesome-icon icon = "star" class="product-card-star star-yellow" />
+            <font-awesome-icon icon = "star" class="product-card-star star-yellow" />
+            <font-awesome-icon icon = "star" class="product-card-star" />
+            <font-awesome-icon icon = "star" class="product-card-star" />
+            <p class="product-card-point">{{ point }}</p>
+          </li>
+          <li class="product-card-list">
+            <h3 class="product-card-list-name">カテゴリー</h3>
+            <p class="product-card-list-content">リップクリーム</p>
+          </li>
+          <li class="product-card-list">
+            <h3 class="product-card-list-name">価格</h3>
+            <p class="product-card-list-content">{{ price }}円</p>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
+  </nuxt-link>
 </template>
 
 <script>
 export default {
   props: {
+    'id': {
+      type: Number,
+      default: null,
+    },
     'image': {
       type: String,
       default: "",
@@ -53,6 +59,11 @@ export default {
 </script>
 
 <style>
+.link-to-show {
+  text-decoration: none;
+  color: black;
+}
+
 @media screen and (min-width: 481px){
   .product-card {
     width: 750px;
