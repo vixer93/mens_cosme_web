@@ -2,7 +2,6 @@ import axios from '@/plugins/axios'
 
 export const store = () => ({
   products: [],
-  newProduct: {},
 })
 
 export const mutations = {
