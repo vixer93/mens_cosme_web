@@ -160,4 +160,68 @@ export default {
     color: #ffc400;
   }
 }
+
+@media screen and (max-width: 480px) {
+  .detail-product {
+    width: 80%;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+  }
+  .detail-product-image {
+    width: 250px;
+    height: 250px;
+    object-fit: contain;
+    border: solid 1px #eeeeee;
+    background-color: #eeeeee;
+    margin: 0 auto 10px auto;
+    display: block;
+  }
+  .detail-product-sub-images {
+    display: flex;
+    width: 90%;
+    overflow-x: scroll;
+    margin: 0 auto 20px auto;
+  }
+  .detail-product-sub-image {
+    height: 100px;
+    object-fit: contain;
+    border: solid 1px #eeeeee;
+    background-color: #eeeeee;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  .detail-product-info {
+    width: 100%;
+    padding: 0 20px;
+  }
+  .detail-product-lists {
+    font-size: 20px;
+  }
+  .detail-product-list {
+    display: flex;
+    list-style: none;
+    margin-bottom: 20px;
+  }
+  .detail-product-list-name {
+    margin-right: 10px;
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background-color: #00acc1;
+    color: white;
+  }
+  .detail-product-list-content {
+    height: 30px;
+    line-height: 30px;
+  }
+  .detail-product-star {
+    color: #eeeeee;
+    margin-right: 5px;
+  }
+  .star-yellow {
+    color: #ffc400;
+  }
+}
 </style>
