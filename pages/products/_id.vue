@@ -17,7 +17,6 @@ import axios from '@/plugins/axios'
 export default {
   async asyncData({ params }){
     let { data } = await axios.get(`/products/${params.id}`)
-    console.log(data)
     return { product: data }
   },
   components: {
