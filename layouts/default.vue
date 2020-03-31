@@ -57,12 +57,11 @@ button {
   -webkit-appearance: none;
 }
 
-input[type=text]    {
-    font-size : 16px;
+/*input[type=text]    {
     -webkit-border-radius : 0;
     -webkit-appearance : none;
     -webkit-tap-highlight-color : rgba(0,0,0,0);
-}
+}*/
 *,
 *:before,
 *:after {

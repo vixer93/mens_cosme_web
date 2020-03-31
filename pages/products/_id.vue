@@ -1,5 +1,5 @@
 <template>
-  <div class="show-product">
+  <div class="show-product" :style="displayModal ? styleObject : false">
     <DetailProduct
       :name="product.name"
       :brand="product.brand"
@@ -8,7 +8,7 @@
       :images="product.images"
     />
     <CreateReviewBtn @displayReviewModal="displayReviewModal"/>
-    <ReviewModal/>
+    <ReviewModal @removeModal="undisplayReviewModal" v-if="displayModal"/>
   </div>
 </template>
 
@@ -31,16 +31,19 @@ export default {
   data(){
     return {
       displayModal: false,
+      styleObject: {
+        position: 'fixed',
+        width: '100%',
+      }
     }
   },
   methods: {
     displayReviewModal(display){
       this.displayModal = display
-    }
+    },
+    undisplayReviewModal(undisplay){
+      this.displayModal = undisplay
+    },
   }
 }
 </script>
-
-<style>
-  
-</style>
