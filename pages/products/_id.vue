@@ -7,12 +7,16 @@
       :price="product.price"
       :images="product.images"
     />
+    <CreateReviewBtn @displayReviewModal="displayReviewModal"/>
+    <ReviewModal/>
   </div>
 </template>
 
 <script>
-import DetailProduct from '@/components/detail-product'
-import axios from '@/plugins/axios'
+import DetailProduct   from '@/components/detail-product'
+import CreateReviewBtn from '@/components/create-review-btn'
+import ReviewModal     from '@/components/review-modal'
+import axios           from '@/plugins/axios'
 
 export default {
   async asyncData({ params }){
@@ -21,6 +25,18 @@ export default {
   },
   components: {
     DetailProduct,
+    CreateReviewBtn,
+    ReviewModal,
+  },
+  data(){
+    return {
+      displayModal: false,
+    }
+  },
+  methods: {
+    displayReviewModal(display){
+      this.displayModal = display
+    }
   }
 }
 </script>
