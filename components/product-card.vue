@@ -80,7 +80,6 @@ export default {
       }else if (4 < this.point && this.point <= 5) {
         this.starOne = this.starTwo = this.starThree = this.starFour = this.starFive = true
       }
-      console.log(this.starOne)
     }
   }
 }
