@@ -10,11 +10,11 @@
           </li>
           <li class="product-card-list">
             <h3 class="product-card-list-name">レビュー</h3>
-            <font-awesome-icon icon = "star" class="product-card-star star-yellow" />
-            <font-awesome-icon icon = "star" class="product-card-star star-yellow" />
-            <font-awesome-icon icon = "star" class="product-card-star star-yellow" />
-            <font-awesome-icon icon = "star" class="product-card-star" />
-            <font-awesome-icon icon = "star" class="product-card-star" />
+            <font-awesome-icon icon = "star" class="product-card-star" :class="{ 'star-yellow': starOne }"/>
+            <font-awesome-icon icon = "star" class="product-card-star" :class="{ 'star-yellow': starTwo }"/>
+            <font-awesome-icon icon = "star" class="product-card-star" :class="{ 'star-yellow': starThree }"/>
+            <font-awesome-icon icon = "star" class="product-card-star" :class="{ 'star-yellow': starFour }"/>
+            <font-awesome-icon icon = "star" class="product-card-star" :class="{ 'star-yellow': starFive }"/>
             <p class="product-card-point">{{ point }}</p>
           </li>
           <li class="product-card-list">
@@ -53,6 +53,34 @@ export default {
     'point': {
       type: Number,
       default: null,
+    }
+  },
+  created(){
+    this.markStarByPoint()
+  },
+  data(){
+    return {
+      starOne: false,
+      starTwo: false,
+      starThree: false,
+      starFour: false,
+      starFive: false,
+    }
+  },
+  methods: {
+    markStarByPoint(){
+      if (0 < this.point && this.point <= 1) {
+        this.starOne = true
+      }else if (1 < this.point && this.point <= 2) {
+        this.starOne = this.starTwo = true
+      }else if (2 < this.point && this.point <= 3) {
+        this.starOne = this.starTwo = this.starThree = true
+      }else if (3 < this.point && this.point <= 4) {
+        this.starOne = this.starTwo = this.starThree = this.starFour = true
+      }else if (4 < this.point && this.point <= 5) {
+        this.starOne = this.starTwo = this.starThree = this.starFour = this.starFive = true
+      }
+      console.log(this.starOne)
     }
   }
 }

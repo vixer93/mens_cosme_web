@@ -72,7 +72,7 @@ export default {
       starFive: false,
     }
   },
-  mounted(){
+  created(){
     this.markStarByPoint()
   },
   methods: {
