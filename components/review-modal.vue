@@ -15,7 +15,7 @@
       <textarea v-model="content" class="review-modal-text" placeholder="レビューを記述してください"></textarea>
       <div class="review-modal-btns">
         <button @click="handleSubmitReview" class="review-modal-submit">投稿</button>
-        <button @click="handleClickCancel" class="review-modal-cancel">キャンセル</button>
+        <button @click="removeModal" class="review-modal-cancel">キャンセル</button>
       </div>
     </div>
   </div>
@@ -41,13 +41,8 @@ export default {
       content: "",
     }
   },
-  // computed: {
-  //   currentUser(){
-  //     return this.$store.user.currentUser
-  //   }
-  // },
   methods: {
-    handleClickCancel(){
+    removeModal(){
       this.$emit("removeModal", false)
     },
     handleClickStar(touchedNum){
@@ -82,16 +77,17 @@ export default {
           break
       }
     },
-    handleSubmitReview(){
+    async handleSubmitReview(){
       const review = {
         point: this.point,
         title: this.title,
         content: this.content,
         user_id: this.$store.state.user.currentUser.id
       }
-      this.$store.dispatch('review/addReview',
-                           { review: review, productId: this.$route.params.id }
-                          )
+      await this.$store.dispatch('review/addReview',
+                                 { review: review, productId: this.$route.params.id }
+                                )
+      this.removeModal()
     }
   }
 }
