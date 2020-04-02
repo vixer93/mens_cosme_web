@@ -14,7 +14,7 @@
       <input v-model="title" type="text" class="review-modal-title" placeholder="レビュータイトルを入力してください">
       <textarea v-model="content" class="review-modal-text" placeholder="レビューを記述してください"></textarea>
       <div class="review-modal-btns">
-        <button class="review-modal-submit">投稿</button>
+        <button @click="handleSubmitReview" class="review-modal-submit">投稿</button>
         <button @click="handleClickCancel" class="review-modal-cancel">キャンセル</button>
       </div>
     </div>
@@ -41,6 +41,11 @@ export default {
       content: "",
     }
   },
+  // computed: {
+  //   currentUser(){
+  //     return this.$store.user.currentUser
+  //   }
+  // },
   methods: {
     handleClickCancel(){
       this.$emit("removeModal", false)
@@ -76,6 +81,17 @@ export default {
           this.point = 5
           break
       }
+    },
+    handleSubmitReview(){
+      const review = {
+        point: this.point,
+        title: this.title,
+        content: this.content,
+        user_id: this.$store.state.user.currentUser.id
+      }
+      this.$store.dispatch('review/addReview',
+                           { review: review, productId: this.$route.params.id }
+                          )
     }
   }
 }
