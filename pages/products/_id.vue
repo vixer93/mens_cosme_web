@@ -8,7 +8,11 @@
       :images="product.images"
     />
     <CreateReviewBtn @displayReviewModal="displayReviewModal"/>
-    <ReviewModal @removeModal="undisplayReviewModal" v-if="displayModal"/>
+    <ReviewModal
+      @removeModal="undisplayReviewModal"
+      v-if="displayModal"
+      :name="product.name"
+    />
   </div>
 </template>
 
