@@ -191,4 +191,99 @@ export default {
     color: #ffc400;
   }
 }
+
+@media screen and (max-width: 480px){
+  .review-modal {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+  .review-modal-bg {
+    background: rgba(45,45,45, 0.6);
+    width: 100%;
+    height: 100%;
+  }
+  .review-modal-form {
+    background-color: white;
+    width: 90%;
+    height: 500px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px 30px;
+    border-radius: 5px;
+  }
+  .review-modal-product-name {
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 30px;
+  }
+  .review-modal-title {
+    border-style: none;
+    width: 90%;
+    height: 40px;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: #f4f8fa;
+    margin: 0 auto 20px auto;
+    display: block;
+    border-radius: 5px;
+  }
+  .review-modal-text {
+    border-style: none;
+    width: 90%;
+    height: 250px;
+    font-size: 15px;
+    background-color: #f4f8fa;
+    margin: 0 auto 20px auto;
+    display: block;
+    border-radius: 5px;
+    resize: none;
+  }
+  .review-modal-btns {
+    display: flex;
+    justify-content: space-between;
+    width: 220px;
+    margin: 0 auto;
+
+  }
+  .review-modal-submit {
+    background-color: #00acc1;
+    color: white;
+    width: 100px;
+    font-size: 17px;
+    font-weight: bold;
+    text-align: center;
+    border-style: none;
+  }
+  .review-modal-cancel {
+    background-color: white;
+    color: #757575;
+    border: solid 1px #757575;
+    width: 100px;
+    font-size: 17px;
+    font-weight: bold;
+    text-align: center;
+  }
+  .review-modal-point {
+    width: 90%;
+    margin: 0 auto 20px auto;
+    display: flex;
+    color: #757575;
+    font-size: 20px;
+  }
+  .review-modal-point-name {
+    margin-right: 10px;
+  }
+  .review-modal-star {
+    color: #eeeeee;
+    margin-right: 5px;
+  }
+  .star-yellow {
+    color: #ffc400;
+  }
+}
 </style>
