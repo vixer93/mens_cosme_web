@@ -1,7 +1,7 @@
 <template>
   <div class="create-review-btn">
     <button @click="handleClickBtn" class="create-review-btn-btn">
-      口コミを投稿する
+      レビューを投稿する
     </button>
   </div>
 </template>
