@@ -8,6 +8,9 @@
       :images="product.images"
     />
     <CreateReviewBtn @displayReviewModal="displayReviewModal"/>
+    <ReviewIndex
+      :reviews="product.reviews"
+    />
     <ReviewModal
       @removeModal="undisplayReviewModal"
       v-if="displayModal"
@@ -20,6 +23,7 @@
 import DetailProduct   from '@/components/detail-product'
 import CreateReviewBtn from '@/components/create-review-btn'
 import ReviewModal     from '@/components/review-modal'
+import ReviewIndex     from '@/components/review-index'
 import axios           from '@/plugins/axios'
 
 export default {
@@ -31,6 +35,7 @@ export default {
     DetailProduct,
     CreateReviewBtn,
     ReviewModal,
+    ReviewIndex,
   },
   data(){
     return {
