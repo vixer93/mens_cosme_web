@@ -20,7 +20,6 @@
 
 <script>
 import ReviewCard from '@/components/review-card'
-import axios      from '@/plugins/axios'
 
 export default {
   components: {
