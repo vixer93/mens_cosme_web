@@ -2,8 +2,8 @@
   <div class="review-index">
     <h1 class="review-index-title">レビュー一覧</h1>
     <div v-if="reviews.length==0" class="review-index-no-review" >レビューはまだありません</div>
-    <ReviewCard v-else v-for="(review, index) in reviews"
-      :key="index"
+    <ReviewCard v-else v-for="review in reviews"
+      :key="review.id"
       :title="review.title"
       :content="review.content"
       :point="review.point"

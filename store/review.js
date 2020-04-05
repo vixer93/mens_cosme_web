@@ -21,7 +21,6 @@ export const mutations = {
 
   addNewReview(state, newReview){
     state.reviews.unshift(newReview)
-    console.log(state.reviews)
   }
 }
 

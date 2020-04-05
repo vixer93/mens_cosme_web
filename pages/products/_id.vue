@@ -7,7 +7,7 @@
       :price="product.price"
       :images="product.images"
     />
-    <CreateReviewBtn @displayReviewModal="displayReviewModal"/>
+    <CreateReviewBtn v-if="currentUser" @displayReviewModal="displayReviewModal"/>
     <ReviewIndex
       :reviews="reviews"
     />
@@ -36,6 +36,9 @@ export default {
     ReviewIndex,
   },
   computed: {
+    currentUser(){
+      return this.$store.state.user.currentUser
+    },
     product(){
       return this.$store.state.review.product
     },

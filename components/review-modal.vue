@@ -88,6 +88,7 @@ export default {
                                  { review: review, productId: this.$route.params.id }
                                 )
       this.removeModal()
+      this.$router.go({path: this.$router.currentRoute.path, force: true})
     }
   }
 }
