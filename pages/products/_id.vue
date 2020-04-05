@@ -7,9 +7,9 @@
       :price="product.price"
       :images="product.images"
     />
-    <CreateReviewBtn @displayReviewModal="displayReviewModal"/>
+    <CreateReviewBtn v-if="currentUser" @displayReviewModal="displayReviewModal"/>
     <ReviewIndex
-      :reviews="product.reviews"
+      :reviews="reviews"
     />
     <ReviewModal
       @removeModal="undisplayReviewModal"
@@ -24,18 +24,27 @@ import DetailProduct   from '@/components/detail-product'
 import CreateReviewBtn from '@/components/create-review-btn'
 import ReviewModal     from '@/components/review-modal'
 import ReviewIndex     from '@/components/review-index'
-import axios           from '@/plugins/axios'
 
 export default {
-  async asyncData({ params }){
-    let { data } = await axios.get(`/products/${params.id}`)
-    return { product: data }
+  async fetch({ store, params }){
+    await store.dispatch("review/getProduct", params.id)
   },
   components: {
     DetailProduct,
     CreateReviewBtn,
     ReviewModal,
     ReviewIndex,
+  },
+  computed: {
+    currentUser(){
+      return this.$store.state.user.currentUser
+    },
+    product(){
+      return this.$store.state.review.product
+    },
+    reviews(){
+      return this.$store.state.review.reviews
+    }
   },
   data(){
     return {
