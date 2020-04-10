@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  nuxt:
+    build:
+      context: .
+      dockerfile: "Dockerfile_production"
+    tty: true
+    command: npm run start
+    volumes:
+      - .:/mens_cosme_web
+    ports:
+      - "3000:3000"
+
+  web:
+    build:
+      context: ./docker/nginx
+      dockerfile: "Dockerfile_production"
+    ports:
+      - "80:80"
+    depends_on:
+      - nuxt
