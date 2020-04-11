@@ -10,7 +10,6 @@
 
 <script>
 import firebase from '@/plugins/firebase'
-import axios    from '@/plugins/axios'
 
 export default {
   data(){
@@ -21,21 +20,23 @@ export default {
     }
   },
   methods: {
-    async login(){
-      const userInfo = {
-        email:this.email,
-        password: this.password
-      }
-      const { headers, data } = await axios.post("/auth/sign_in", userInfo)
-      .catch(err => {
-        this.error = "※メールアドレスとパスワードをご確認ください"
-        return
+    login(){
+      firebase.auth().signInWithEmailAndPassword(this.email, this.password)
+      .then(()=>{
+        this.$router.push("/")
       })
-
-      console.log(data)
-      this.$store.commit('user/setUser', data)
-      this.$store.commit('user/setAuth', headers)
-      // this.$router.push("/")
+      .catch(error => {
+        this.error = (code => {
+          switch (code) {
+            case "auth/user-not-found":
+              return "メールアドレスが間違っています";
+            case "auth/wrong-password":
+              return "※パスワードが正しくありません";
+            default:
+              return "※メールアドレスとパスワードをご確認ください";
+          }
+        })(error.code);
+      })
     }
   }
 }
