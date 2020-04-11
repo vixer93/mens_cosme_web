@@ -42,7 +42,9 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
+    '@nuxtjs/axios',
     'nuxt-fontawesome',
+    'cookie-universal-nuxt',
   ],
   /*
   ** Build configuration
