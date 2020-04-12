@@ -28,8 +28,8 @@ export default {
     }
   },
   methods: {
-    logout(){
-      let { data } = axios.delete("/auth/sign_out",{
+    async logout(){
+      await axios.delete("/auth/sign_out",{
         headers: this.$store.state.user.auth
       }).catch(err => {
         return err

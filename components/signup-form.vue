@@ -24,39 +24,45 @@ export default {
     }
   },
   methods: {
-    signup(){
-      // if (this.password != this.password_confirmation) {
-      //   this.error = "パスワードが一致していません"
-      // }
-      // firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
-      // .then(res =>{
-      //   const user = {
-      //     email: res.user.email,
-      //     name:  this.name,
-      //     uid:   res.user.uid,
-      //   };
-      //   axios.post("/users",{ user })
-      //   .then(res => {
-      //     this.$store.commit("user/setUser", res.data)
-      //     this.$router.push("/");
-      //   });
-      // })
-      // .catch(error=>{
-      //   console.log(error)
-      //   this.error = (code => {
-      //     switch (code){
-      //       case "auth/email-already-in-use":
-      //         return "既に登録されたメールアドレスです"
-      //       case "auth/wrong-password":
-      //         return "パスワードが正しくありません"
-      //       case "auth/weak-password":
-      //         return "パスワードは6文字以上必須です"
-      //       default:
-      //         return "メールアドレスとパスワードをご確認ください"
-      //     }
-      //   })(error.code);
-      // })
+    async signup(){
+      const signUpInfo = {
+        name: this.name,
+        email: this.email,
+        password: this.password,
+        password_confirmation: this.password_confirmation
+      }
+      const { headers, data } = await axios.post("/auth",signUpInfo)
+      .catch(err => {
+        this.error = "入力内容を確認してください"
+        return err
+      })
+
+      const authHeader = {
+        'access-token': headers['access-token'],
+        'client':       headers['client'],
+        'uid':          headers['uid']
+      }
+
+      this.setUserToStoreAndCookie(data['data'])
+      this.setAuthHeaderToStoreAndCookie(authHeader)
+      this.$router.push("/")
     },
+
+    setUserToStoreAndCookie(data){
+      this.$store.commit('user/setUser', data)
+      this.$cookies.set('userInfo', data, {
+        path: '/',
+        maxAge: 60 * 60 * 24 * 7
+      })
+    },
+
+    setAuthHeaderToStoreAndCookie(authHeader){
+      this.$store.commit('user/setAuth', authHeader)
+      this.$cookies.set('authToken', authHeader, {
+        path: '/',
+        maxAge: 60 * 60 * 24 * 7
+      })
+    }
   }
 }
 </script>
