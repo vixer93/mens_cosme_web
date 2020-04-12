@@ -11,6 +11,12 @@ export const mutations = {
   },
   setAuth(state, payload){
     state.auth = payload
+  },
+  logoutUser(state){
+    state.currentUser = null
+    state.auth        = {}
+    this.$cookies.remove('userInfo')
+    this.$cookies.remove('authToken')
   }
 }
 

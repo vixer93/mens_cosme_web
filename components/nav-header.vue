@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import axios from '@/plugins/axios'
 export default {
   computed: {
     currentUser(){
@@ -28,11 +29,12 @@ export default {
   },
   methods: {
     logout(){
-      // firebase.auth().signOut()
-      // .then(res=>{
-      //   this.$store.commit('user/setUser',null)
-      //   this.$router.push("/users/login")
-      // })
+      let { data } = axios.delete("/auth/sign_out",{
+        headers: this.$store.state.user.auth
+      }).catch(err => {
+        return err
+      })
+      this.$store.commit("user/logoutUser")
     }
   }
 }
