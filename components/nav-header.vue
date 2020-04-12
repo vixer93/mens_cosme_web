@@ -20,7 +20,6 @@
 </template>
 
 <script>
-import firebase from '@/plugins/firebase'
 export default {
   computed: {
     currentUser(){
@@ -29,11 +28,11 @@ export default {
   },
   methods: {
     logout(){
-      firebase.auth().signOut()
-      .then(res=>{
-        this.$store.commit('user/setUser',null)
-        this.$router.push("/users/login")
-      })
+      // firebase.auth().signOut()
+      // .then(res=>{
+      //   this.$store.commit('user/setUser',null)
+      //   this.$router.push("/users/login")
+      // })
     }
   }
 }

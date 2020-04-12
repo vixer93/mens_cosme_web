@@ -1,7 +1,7 @@
 import axios from '@/plugins/axios'
 
 export const state = () => ({
-  currentUser: {},
+  currentUser: null,
   auth: {},
 })
 

@@ -9,8 +9,6 @@
 </template>
 
 <script>
-import firebase from '@/plugins/firebase';
-
 export default {
   fetch({ store, redirect }){
     store.watch(
@@ -29,11 +27,11 @@ export default {
   },
   methods: {
     logout(){
-      firebase.auth().signOut()
-      .then(res=>{
-        this.$store.commit('user/setUser',null)
-        this.$router.push("/users/login")
-      })
+      // firebase.auth().signOut()
+      // .then(res=>{
+      //   this.$store.commit('user/setUser',null)
+      //   this.$router.push("/users/login")
+      // })
     }
   }
 }

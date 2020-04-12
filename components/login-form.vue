@@ -9,7 +9,6 @@
 </template>
 
 <script>
-import firebase from '@/plugins/firebase'
 import axios    from '@/plugins/axios'
 
 export default {
@@ -22,20 +21,42 @@ export default {
   },
   methods: {
     async login(){
-      const userInfo = {
+      const authInfo = {
         email:this.email,
         password: this.password
       }
-      const { headers, data } = await axios.post("/auth/sign_in", userInfo)
+
+      const { headers, data } = await axios.post("/auth/sign_in", authInfo)
       .catch(err => {
         this.error = "※メールアドレスとパスワードをご確認ください"
-        return
+        return err
       })
 
-      console.log(data)
+      const authHeader = {
+        'access-token': headers['access-token'],
+        'client':       headers['client'],
+        'uid':          headers['uid']
+      }
+
+      this.setUserToStoreAndCookie(data['data'])
+      this.setAuthHeaderToStoreAndCookie(authHeader)
+      this.$router.push("/")
+    },
+
+    setUserToStoreAndCookie(data){
       this.$store.commit('user/setUser', data)
-      this.$store.commit('user/setAuth', headers)
-      // this.$router.push("/")
+      this.$cookies.set('userInfo', data, {
+        path: '/',
+        maxAge: 60 * 60 * 24 * 7
+      })
+    },
+
+    setAuthHeaderToStoreAndCookie(authHeader){
+      this.$store.commit('user/setAuth', authHeader)
+      this.$cookies.set('authToken', authHeader, {
+        path: '/',
+        maxAge: 60 * 60 * 24 * 7
+      })
     }
   }
 }
