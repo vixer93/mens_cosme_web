@@ -30,7 +30,7 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    "@/plugins/auth-check"
+    "@/plugins/cookie.js",
   ],
   /*
   ** Nuxt.js dev-modules
@@ -42,7 +42,9 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
+    '@nuxtjs/axios',
     'nuxt-fontawesome',
+    'cookie-universal-nuxt',
   ],
   /*
   ** Build configuration

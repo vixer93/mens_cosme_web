@@ -17,7 +17,7 @@ export const mutations = {
 }
 
 export const actions = {
-  async addProduct({commit, dispatch}, payload){
+  async addProduct({ commit }, payload){
     let { data } = await axios.post("/products",
                                     payload,
                                     { headers: { 'Content-Type': 'multipart/form-data'}}

@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import firebase from '@/plugins/firebase'
+import axios from '@/plugins/axios'
 
 export default {
   data(){
@@ -20,22 +20,42 @@ export default {
     }
   },
   methods: {
-    login(){
-      firebase.auth().signInWithEmailAndPassword(this.email, this.password)
-      .then(()=>{
-        this.$router.push("/")
+    async login(){
+      const authInfo = {
+        email:this.email,
+        password: this.password
+      }
+
+      const { headers, data } = await axios.post("/auth/sign_in", authInfo)
+      .catch(err => {
+        this.error = "※メールアドレスとパスワードをご確認ください"
+        return err
       })
-      .catch(error => {
-        this.error = (code => {
-          switch (code) {
-            case "auth/user-not-found":
-              return "メールアドレスが間違っています";
-            case "auth/wrong-password":
-              return "※パスワードが正しくありません";
-            default:
-              return "※メールアドレスとパスワードをご確認ください";
-          }
-        })(error.code);
+
+      const authHeader = {
+        'access-token': headers['access-token'],
+        'client':       headers['client'],
+        'uid':          headers['uid']
+      }
+
+      this.setUserToStoreAndCookie(data['data'])
+      this.setAuthHeaderToStoreAndCookie(authHeader)
+      this.$router.push("/")
+    },
+
+    setUserToStoreAndCookie(data){
+      this.$store.commit('user/setUser', data)
+      this.$cookies.set('userInfo', data, {
+        path: '/',
+        maxAge: 60 * 60 * 24 * 7
+      })
+    },
+
+    setAuthHeaderToStoreAndCookie(authHeader){
+      this.$store.commit('user/setAuth', authHeader)
+      this.$cookies.set('authToken', authHeader, {
+        path: '/',
+        maxAge: 60 * 60 * 24 * 7
       })
     }
   }
