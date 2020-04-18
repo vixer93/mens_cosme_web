@@ -94,4 +94,43 @@ export default {
     transform-origin: 50% 50% 0;
   }
 }
+
+@media screen and (max-width: 480px) {
+  .review-index {
+    background-color: white;
+    width: 80%;
+    margin: 0 auto 20px auto;
+    padding: 20px 0;
+  }
+  .review-index-title {
+    text-align: center;
+    font-size: 20px;
+    padding-bottom: 10px;
+    border-bottom: solid 2px #eeeeee;
+  }
+  .review-index-no-review {
+    text-align: center;
+    padding-top: 20px;
+    font-size: 20px;
+  }
+  .review-index-more-display {
+    text-align: center;
+    font-size: 20px;
+    width: max-content;
+    margin: 0 auto;
+    padding-top: 10px;
+    cursor: pointer;
+  }
+  .review-index-load {
+    text-align: center;
+    padding-top: 10px;
+  }
+  .review-index-load-icon {
+    font-size: 25px;
+    color: #757575;
+    margin: 0 auto;
+    animation: spin 1.2s linear 0s infinite;
+    transform-origin: 50% 50% 0;
+  }
+}
 </style>

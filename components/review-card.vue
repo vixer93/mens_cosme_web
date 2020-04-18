@@ -95,4 +95,34 @@ export default {
     white-space: pre-line;
   }
 }
+
+@media screen and (max-width: 480px) {
+  .review-card {
+    width: 100%;
+    padding: 20px;
+    border-bottom: solid 2px #eeeeee;
+  }
+  .review-card-reviewer-name {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  .review-card-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  .review-card-stars {
+    margin-bottom: 10px;
+  }
+  .review-card-star {
+    font-size: 18px;
+    color: #eeeeee;
+    margin-right: 5px;
+  }
+  .star-yellow {
+    color: #ffc400;
+  }
+  .review-card-content {
+    white-space: pre-line;
+  }
+}
 </style>
