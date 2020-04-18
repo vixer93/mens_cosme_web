@@ -27,7 +27,7 @@
         </li>
         <li class="detail-product-list">
           <h3 class="detail-product-list-name">カテゴリー</h3>
-          <p class="detail-product-list-content">リップクリーム</p>
+          <p class="detail-product-list-content">{{ category }}</p>
         </li>
         <li class="detail-product-list">
           <h3 class="detail-product-list-name">価格</h3>
@@ -59,6 +59,10 @@ export default {
     },
     'images': {
       type: Array,
+      require: true,
+    },
+    'category': {
+      type: String,
       require: true,
     }
   },

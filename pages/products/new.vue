@@ -15,6 +15,14 @@
       </label>
       <input v-model="name" type="text" class="new-product-name" placeholder="商品名">
       <input v-model="brand" type="text" class="new-product-email" placeholder="ブランド">
+      <select @change="handleChangeCategory(big_category_id)" v-model="big_category_id" name="category" class="new-product-category">
+        <option value="" class="new-product-category-item">カテゴリーを選択してください</option>
+        <option v-for="category in categories" :value="category.id" :key="category.id" class="new-product-category-item">{{ category.name }}</option>
+      </select>
+      <select v-if="small_categories.length!=0" v-model="small_category_id" name="small-category" class="new-product-category">
+        <option value="" class="new-product-category-item">選択してください</option>
+        <option v-for="small_category in small_categories" :value="small_category.id" :key="small_category.id" class="new-product-category-item">{{ small_category.name }}</option>
+      </select>
       <input v-model="price" type="text" class="new-product-password" placeholder="価格">
       <p class="new-product-error-message">{{ error }}</p>
       <button @click.prevent="add" class="new-product-button">登録</button>
@@ -23,7 +31,13 @@
 </template>
 
 <script>
+import axios from "@/plugins/axios"
+
 export default {
+  async asyncData(){
+    const { data } = await axios.get("/product_categories")
+    return {categories: data}
+  },
   data(){
     return {
       name: "",
@@ -31,6 +45,9 @@ export default {
       price: null,
       images: [],
       image_urls: [],
+      big_category_id: "",
+      small_category_id: "",
+      small_categories: [],
       error: "",
     }
   },
@@ -50,12 +67,18 @@ export default {
       formData.append('product[name]', this.name)
       formData.append('product[brand]', this.brand)
       formData.append('product[price]', this.price)
+      formData.append('product[category_id]', this.small_category_id)
       formData.append('product[user_id]', this.$store.state.user.currentUser.id)
       for(let i=0; i<this.images.length; i++){
         formData.append(`product[images_attributes][${i}][name]`, this.images[i])
       }
       await this.$store.dispatch("product/addProduct", formData)
       this.$router.push("/");
+    },
+
+    async handleChangeCategory(id){
+      const { data } = await axios.get(`/product_categories/${id}`)
+      this.small_categories = data
     }
   }
 }
@@ -93,6 +116,19 @@ export default {
     width: 380px;
     margin-bottom: 20px;
     font-size: 18px;
+  }
+
+  .new-product-category {
+    background-color: #f4f8fa;
+    border-style: none;
+    height: 40px;
+    width: 380px;
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
+
+  .new-product-category-item {
+    color: #eeeeee;
   }
 
   .new-product-password {
@@ -193,6 +229,19 @@ export default {
     width: 90%;
     margin-bottom: 20px;
     font-size: 18px;
+  }
+
+  .new-product-category {
+    background-color: #f4f8fa;
+    border-style: none;
+    height: 40px;
+    width: 90%;
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
+
+  .new-product-category-item {
+    color: #eeeeee;
   }
 
   .new-product-password {

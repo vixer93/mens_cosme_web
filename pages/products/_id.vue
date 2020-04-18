@@ -6,6 +6,7 @@
       :point="product.point"
       :price="product.price"
       :images="product.images"
+      :category="product.category"
     />
     <CreateReviewBtn v-if="currentUser" @displayReviewModal="displayReviewModal"/>
     <ReviewIndex

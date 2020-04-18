@@ -7,6 +7,7 @@
       :name="product.name"
       :price="product.price"
       :point="product.point"
+      :category="product.category"
     />
     <CreateProductBtn v-if="currentUser" class="display-none-pc"/>
   </div>

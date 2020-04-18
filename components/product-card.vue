@@ -19,7 +19,7 @@
           </li>
           <li class="product-card-list">
             <h3 class="product-card-list-name">カテゴリー</h3>
-            <p class="product-card-list-content">リップクリーム</p>
+            <p class="product-card-list-content">{{ category }}</p>
           </li>
           <li class="product-card-list">
             <h3 class="product-card-list-name">価格</h3>
@@ -53,6 +53,10 @@ export default {
     'point': {
       type: Number,
       default: null,
+    },
+    'category': {
+      type: String,
+      default: "",
     }
   },
   created(){
