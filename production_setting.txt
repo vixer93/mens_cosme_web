@@ -1,0 +1,4 @@
+1 .envをコピーする
+2 docker-compose -f docker-compose-production.yml build --no-cache を行う
+3 docker-compose -f docker-compose-production.yml run nuxt npm install --save nuxt を行う
+4 docker-compose -f docker-compose-production.yml run nuxt npm run build を行う
