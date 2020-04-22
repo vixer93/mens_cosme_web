@@ -8,6 +8,7 @@
       :price="product.price"
       :point="product.point"
       :category="product.category"
+      :favorite="product.favorite"
     />
     <CreateProductBtn v-if="currentUser" class="display-none-pc"/>
   </div>

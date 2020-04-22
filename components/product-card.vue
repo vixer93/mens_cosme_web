@@ -1,7 +1,12 @@
 <template>
-  <nuxt-link :to="{name: 'products-id', params: {id: id}}" class="link-to-show">
-    <div class="product-card">
+  <div class="product-card">
+    <div class="product-card-image-favo">
       <img :src="image" class="product-card-image">
+      <div v-if="currentUser">
+        <font-awesome-icon @click="handleClickFavo" icon = "heart" class="product-card-favo" :class="{ 'favo-pink': isFavorite }"/>
+      </div>
+    </div>
+    <nuxt-link :to="{name: 'products-id', params: {id: id}}" class="link-to-show">
       <div class="product-card-info">
         <ul class="product-card-lists">
           <li class="product-card-list">
@@ -27,11 +32,13 @@
           </li>
         </ul>
       </div>
-    </div>
-  </nuxt-link>
+    </nuxt-link>
+  </div>
 </template>
 
 <script>
+import axios from '@/plugins/axios'
+
 export default {
   props: {
     'id': {
@@ -57,10 +64,19 @@ export default {
     'category': {
       type: String,
       default: "",
+    },
+    'favorite': {
+      type: Boolean,
+      default: false,
     }
   },
   created(){
     this.markStarByPoint()
+  },
+  computed: {
+    currentUser(){
+      return this.$store.state.user.currentUser
+    }
   },
   data(){
     return {
@@ -69,6 +85,7 @@ export default {
       starThree: false,
       starFour: false,
       starFive: false,
+      isFavorite: this.favorite,
     }
   },
   methods: {
@@ -84,6 +101,29 @@ export default {
       }else if (4 < this.point && this.point <= 5) {
         this.starOne = this.starTwo = this.starThree = this.starFour = this.starFive = true
       }
+    },
+
+    handleClickFavo(){
+      if (this.isFavorite) {
+        this.deleteFavo()
+      }else{
+        this.addFavo()
+      }
+    },
+
+    async addFavo(){
+      const { data } = await axios.post(`/products/${this.id}/favorites`,
+                                        {},
+                                        { headers: this.$store.state.user.auth }
+                                       )
+      this.isFavorite = data.favorite
+    },
+
+    async deleteFavo(){
+      const { data } = await axios.delete(`/products/${this.id}/favorites`,
+                                        { headers: this.$store.state.user.auth }
+                                       )
+      this.isFavorite = data.favorite
     }
   }
 }
@@ -146,6 +186,20 @@ export default {
   .star-yellow {
     color: #ffc400;
   }
+  .product-card-image-favo {
+    position: relative;
+  }
+  .product-card-favo {
+    font-size: 25px;
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    color: #bdbdbd;
+    cursor: pointer;
+  }
+  .favo-pink {
+    color: #f06292;
+  }
 }
 @media screen and (max-width: 480px){
   .product-card {
@@ -156,7 +210,7 @@ export default {
     box-sizing: border-box;
   }
   .product-card-image {
-    width: 300px;
+    width: 90%;
     height: 300px;
     object-fit: contain;
     margin: 0 auto 20px auto;
@@ -166,7 +220,7 @@ export default {
     justify-content: center;
   }
   .product-card-info {
-    width: 300px;
+    width: 90%;
     margin: 0 auto;
   }
   .product-card-lists {
@@ -196,6 +250,20 @@ export default {
   }
   .star-yellow {
     color: #ffc400;
+  }
+    .product-card-image-favo {
+    position: relative;
+  }
+  .product-card-favo {
+    font-size: 25px;
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    color: #bdbdbd;
+    cursor: pointer;
+  }
+  .favo-pink {
+    color: #f06292;
   }
 }
 </style>

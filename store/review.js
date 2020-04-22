@@ -25,8 +25,10 @@ export const mutations = {
 }
 
 export const actions = {
-  async getProduct({ commit }, id){
-    let { data } = await axios.get(`/products/${id}`)
+  async getProduct({ commit, rootState }, id){
+    let { data } = await axios.get(`/products/${id}`,
+                                   {headers: rootState.user.auth}
+                                  )
     commit("setProductAndReview", data)
   },
 

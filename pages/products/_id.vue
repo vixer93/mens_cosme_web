@@ -7,6 +7,7 @@
       :price="product.price"
       :images="product.images"
       :category="product.category"
+      :favorite="product.favorite"
     />
     <CreateReviewBtn v-if="currentUser" @displayReviewModal="displayReviewModal"/>
     <ReviewIndex

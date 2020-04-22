@@ -1,7 +1,12 @@
 <template>
   <div class="detail-product">
     <div class="detail-product-images">
-      <img class="detail-product-image" :src="mainImage" >
+      <div class="detail-product-image-favo">
+        <img class="detail-product-image" :src="mainImage" >
+        <div v-if="currentUser">
+          <font-awesome-icon @click="handleClickFavo" icon = "heart" class="detail-product-favo" :class="{ 'favo-pink': isFavorite }"/>
+        </div>
+      </div>
       <div class="detail-product-sub-images">
         <img v-for="(image, index) in images" @click="changeImage(index)" :src="image.url" class="detail-product-sub-image" :key="index">
       </div>
@@ -39,6 +44,8 @@
 </template>
 
 <script>
+import axios from '@/plugins/axios'
+
 export default {
   props: {
     'name': {
@@ -64,6 +71,15 @@ export default {
     'category': {
       type: String,
       require: true,
+    },
+    'favorite': {
+      type: Boolean,
+      default: false,
+    },
+  },
+  computed: {
+    currentUser(){
+      return this.$store.state.user.currentUser
     }
   },
   data(){
@@ -74,6 +90,7 @@ export default {
       starThree: false,
       starFour: false,
       starFive: false,
+      isFavorite: this.favorite,
     }
   },
   created(){
@@ -96,6 +113,29 @@ export default {
       }else if (4 < this.point && this.point <= 5) {
         this.starOne = this.starTwo = this.starThree = this.starFour = this.starFive = true
       }
+    },
+
+    handleClickFavo(){
+      if (this.isFavorite) {
+        this.deleteFavo()
+      }else{
+        this.addFavo()
+      }
+    },
+
+    async addFavo(){
+      const { data } = await axios.post(`/products/${this.$route.params.id}/favorites`,
+                                        {},
+                                        { headers: this.$store.state.user.auth }
+                                       )
+      this.isFavorite = data.favorite
+    },
+
+    async deleteFavo(){
+      const { data } = await axios.delete(`/products/${this.$route.params.id}/favorites`,
+                                        { headers: this.$store.state.user.auth }
+                                       )
+      this.isFavorite = data.favorite
     }
   }
 }
@@ -163,6 +203,20 @@ export default {
   .star-yellow {
     color: #ffc400;
   }
+  .detail-product-image-favo {
+    position: relative;
+  }
+  .detail-product-favo {
+    font-size: 30px;
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    color: #bdbdbd;
+    cursor: pointer;
+  }
+  .favo-pink {
+    color: #f06292;
+  }
 }
 
 @media screen and (max-width: 480px) {
@@ -173,7 +227,7 @@ export default {
     padding: 20px;
   }
   .detail-product-image {
-    width: 250px;
+    width: 90%;
     height: 250px;
     object-fit: contain;
     border: solid 1px #eeeeee;
@@ -226,6 +280,21 @@ export default {
   }
   .star-yellow {
     color: #ffc400;
+  }
+  .detail-product-image-favo {
+    position: relative;
+    width: 100%;
+  }
+  .detail-product-favo {
+    font-size: 30px;
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    color: #bdbdbd;
+    cursor: pointer;
+  }
+  .favo-pink {
+    color: #f06292;
   }
 }
 </style>

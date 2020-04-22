@@ -25,8 +25,9 @@ export const actions = {
     commit("addProduct", data)
   },
 
-  async getProducts({commit}){
-    let { data } = await axios.get("/products")
+  async getProducts({commit, rootState}){
+    let { data } = await axios.get("/products",
+                                   { headers: rootState.user.auth })
     commit("setProducts", data)
   }
 }
