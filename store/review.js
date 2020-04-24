@@ -37,8 +37,11 @@ export const actions = {
     commit("setReviews", data)
   },
 
-  async addReview({ commit }, { review, productId }){
-    let { data } = await axios.post(`/products/${productId}/reviews`, { review })
+  async addReview({ commit, rootState }, { review, productId }){
+    let { data } = await axios.post(`/products/${productId}/reviews`,
+                                    { review },
+                                    { headers: rootState.user.auth }
+                                   )
     commit("addNewReview", data)
   }
 }
