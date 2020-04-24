@@ -2,6 +2,10 @@
   <form class="signup-form">
     <h1 class="signup-title">Sign Up</h1>
     <input v-model="name" type="text" class="signup-name" placeholder="ニックネーム">
+    <select v-model="age" class="signup-category" name="ages">
+      <option value="" class="signup-category-item">選択してください</option>
+      <option v-for="(ageArea, index) in ages" :value="index" :key="index" class="signup-category-item">{{ ageArea }}</option>
+    </select>
     <input v-model="email" type="email" class="signup-email" placeholder="Email">
     <input v-model="password" type="password" class="signup-password" placeholder="パスワード">
     <input v-model="password_confirmation" type="password" class="signup-password-conf" placeholder="パスワード確認"><br>
@@ -11,12 +15,19 @@
 </template>
 
 <script>
-import axios    from "@/plugins/axios"
+import axios      from "@/plugins/axios"
 
 export default {
+  props:{
+    'ages': {
+      type: Array,
+      default: [],
+    }
+  },
   data(){
     return {
       name: "",
+      age: null,
       email: "",
       password: "",
       password_confirmation: "",
@@ -26,8 +37,9 @@ export default {
   methods: {
     async signup(){
       const signUpInfo = {
-        name: this.name,
-        email: this.email,
+        name:     this.name,
+        age:      this.age,
+        email:    this.email,
         password: this.password,
         password_confirmation: this.password_confirmation
       }
@@ -131,6 +143,19 @@ export default {
   .signup-error-message {
     color: red;
     margin-bottom: 10px;
+  }
+
+  .signup-category {
+    background-color: #f4f8fa;
+    border-style: none;
+    height: 40px;
+    width: 380px;
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
+
+  .signup-category-item {
+    color: #eeeeee;
   }
 }
 

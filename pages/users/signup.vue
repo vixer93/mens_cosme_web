@@ -1,12 +1,19 @@
 <template>
   <div class="signup">
-    <SignupForm/>
+    <SignupForm :ages="ages"/>
   </div>
 </template>
 
 <script>
 import SignupForm from '@/components/signup-form'
+import axios      from "@/plugins/axios"
+
 export default {
+  async asyncData({params}){
+    const { data } = await axios.get("/user_ages")
+    return { ages: data }
+  },
+
   components: {
     SignupForm,
   }
