@@ -21,6 +21,5 @@ export default {
 header {
   background-color: white;
   width: 100%;
-  margin-bottom: 20px;
 }
 </style>

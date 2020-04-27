@@ -38,6 +38,10 @@ export default {
 </script>
 
 <style>
+.container {
+  margin-top: 20px;
+}
+
 @media screen and (min-width: 481px){
   .display-none-pc {
     display: none;

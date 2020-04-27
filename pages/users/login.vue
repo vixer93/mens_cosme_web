@@ -16,10 +16,11 @@ export default {
 </script>
 
 <style>
-.signup {
+.login {
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
+  margin-top: 20px;
 }
 </style>

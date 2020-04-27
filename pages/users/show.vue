@@ -1,24 +1,24 @@
 <template>
   <div class="mypage">
-    <div v-if="currentUser">
-      こんにちは
-      {{ currentUser.name }}さん
-    </div>
-    <button @click="logout">ログアウト</button>
+    <UserBackground/>
+    <UserProfile/>
+    <UserPostedData/>
   </div>
 </template>
 
 <script>
+import UserBackground    from '@/components/user-background'
+import UserProfile       from '@/components/user-profile'
+import UserPostedData    from '@/components/user-posted-data'
+
 export default {
-  fetch({ store, redirect }){
-    store.watch(
-      state => state.user.currentUser,
-      (newUser, oldUser) => {
-        if (!newUser) {
-          return redirect("/users/login")
-        }
-      }
-    )
+  fetch({ store }){
+    store.dispatch('user/getUserProfile')
+  },
+  components: {
+    UserBackground,
+    UserProfile,
+    UserPostedData,
   },
   computed: {
     currentUser(){
@@ -26,13 +26,6 @@ export default {
     }
   },
   methods: {
-    logout(){
-      // firebase.auth().signOut()
-      // .then(res=>{
-      //   this.$store.commit('user/setUser',null)
-      //   this.$router.push("/users/login")
-      // })
-    }
   }
 }
 </script>
